@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;
 
-    font-family: sans-serif;
+    font-family: "Pixelify Sans", sans-serif;
 }
 
 /* Game Background. */
@@ -176,9 +176,11 @@ nav{
 
 /* Point Collector. */
 .pointCollector{
+    /* Size. */
     height: 20vh;
     width: 30%;
 
+    /* Positioning. */
     position: absolute;
     right: calc(50% - 15% + 5px);
     bottom: 0px;
@@ -196,4 +198,70 @@ nav{
 
     /* Putting the cars in the correct line. */
     transform: rotate(180deg);
+}
+
+.overlay{
+    /* Size. */
+    height: 100%;
+    width: 100%;
+
+    /* Background. */
+    background: #000000Ac;
+
+    /* Positioning. */
+    position: absolute;
+    top:0px;
+    left: 0px;
+
+    /* Display and alignment. */
+    display: none;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+
+    /* Elements in overlay. */
+    .message{
+        /* Size. */
+        height: 40vh;
+        width: 60vh;
+
+        /* Background. */
+        background: #DFAB00;
+        border-radius: 10px;
+
+        /* Elements in message. */
+        header{
+            /* Size. */
+            height: 60%;
+            width: 100%;
+
+            /* Font */
+            text-shadow: 5px 5px black;
+            font-weight: bolder;
+            text-align: center;
+            font-size: 48pt;
+            color: white;
+
+            /* Alignment */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        p{
+            /* Size */
+            height: 40%;
+            width: 100%;
+
+            /* Alignment */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            b{
+                color: white;
+                text-shadow: 1px 1px red;
+                margin: 5px;
+            }
+        }
+    }
 }

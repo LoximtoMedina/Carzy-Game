@@ -3,7 +3,7 @@
     const ingameMenu=document.querySelector("#ingameMenu");
     const displaymenuButton=document.querySelector("#ingameMenu > li:nth-child(1)");
     const menuButton=document.querySelector("#ingameMenu > li:nth-child(2)");
-    const pauseButton=document.querySelector("#ingameMenu > li:nth-child(3)");
+    const pauseButton=document.querySelector("#pauseButton");
 
     // Score table info.
     const score=document.querySelector(".score");
@@ -18,8 +18,17 @@
     // Point Collector.
     const pointCollector=document.querySelector(".pointCollector");
 
+    // Overlay
+    const overlay=document.querySelector(".overlay");
+
+    // Message
+    const messaggeTitle=document.querySelector(".message > header");
+    const messaggeInfo=document.querySelector(".message > p");
+
 // Creating the program variables.
+let gameInterval;
 let menuClick=false;
+let messageDisplay=false;
 let pauseClick=false;
 let timeInterval=0;
 let notUserCarStep=0;
@@ -69,167 +78,214 @@ displaymenuButton.addEventListener("click", ()=>{
     }
 });
 
-// Event for player car movement.
-road.addEventListener("keydown", (e)=>{
-    if ((e.code=="ArrowLeft" || e.code=="KeyA") && userCar.getBoundingClientRect().x>=491.5){ userCar.style.left = userCar.getBoundingClientRect().x - 6 + "px"; }
-    if ((e.code=="ArrowRight" || e.code=="KeyD") && userCar.getBoundingClientRect().x<=744){ userCar.style.left = userCar.getBoundingClientRect().x + 6 + "px"; }
-    if ((e.code=="ArrowDown" || e.code=="KeyS") && userCar.getBoundingClientRect().y<=494){ userCar.style.top = userCar.getBoundingClientRect().y + 6 + "px"; }
-    if ((e.code=="ArrowUp" || e.code=="KeyW") && userCar.getBoundingClientRect().y>=50){ userCar.style.top = userCar.getBoundingClientRect().y - 6 + "px"; }
-    if ((e.code=="KeyF") && parseInt(fuel.textContent)>0){ fuel.textContent=parseInt(fuel.textContent)-25 + " %"; }    
-});
-
 // Event for spawn the cars in the road and add fuel and points to the score table.
-setInterval(()=>{
-    // Adding 1 more for the time interval;
-    timeInterval++;
+let game = () => {
 
-    if (timeInterval%35==0){
-        // Creating the car that will enter the road against traffic.
-        let notUserCar=document.createElement('div');
-
-        // Granting the "notUserCar" class to automatically add styles to it.
-        notUserCar.setAttribute("class", "notUserCar");
-        
-        // Giving the car a texture.
-        switch ((Math.floor(Math.random()*(14-1+1)) + 1)){
-            case 1:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car1.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=8;
-                break;
-            case 2:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car2.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=8;
-                break;
-            case 3:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car3.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=8;
-                break;
-            case 4:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car4.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=8;
-                break;
-            case 5:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car5.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=7;
-                break;
-            case 6:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car6.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=10;
-                break;
-            case 7:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car7.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=10;
-                break;
-            case 8:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car8.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=8;
-                break;
-            case 9:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car9.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=7;
-                break;
-            case 10:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car10.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=17;
-                break;
-            case 11:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car11.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=8;
-                break;
-            case 12:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car12.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCar.style.height="250px"
-                notUserCar.style.width="160px"
-                notUserCarStep=5;
-                break;
-            case 13:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car13.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCar.style.height="200px"
-                notUserCar.style.width="120px"
-                notUserCarStep=5;
-                break;
-            case 14:
-                notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car14.png?raw=true) no-repeat";
-                notUserCar.style.backgroundPosition="center";
-                notUserCar.style.backgroundSize="contain";
-                notUserCarStep=8;
-                break;
+    gameInterval=setInterval( () =>{
+        // Adding 1 more for the time interval;
+        timeInterval++;
+    
+        if (timeInterval%35==0){
+            // Creating the car that will enter the road against traffic.
+            let notUserCar=document.createElement('div');
+    
+            // Granting the "notUserCar" class to automatically add styles to it.
+            notUserCar.setAttribute("class", "notUserCar");
+            
+            // Giving the car a texture.
+            switch ((Math.floor(Math.random()*(14-1+1)) + 1)){
+                case 1:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car1.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=8;
+                    break;
+                case 2:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car2.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=8;
+                    break;
+                case 3:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car3.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=8;
+                    break;
+                case 4:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car4.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=8;
+                    break;
+                case 5:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car5.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=7;
+                    break;
+                case 6:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car6.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=10;
+                    break;
+                case 7:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car7.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=10;
+                    break;
+                case 8:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car8.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=8;
+                    break;
+                case 9:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car9.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=7;
+                    break;
+                case 10:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car10.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=17;
+                    break;
+                case 11:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car11.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=8;
+                    break;
+                case 12:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car12.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCar.style.height="250px"
+                    notUserCar.style.width="85px"
+                    notUserCarStep=5;
+                    break;
+                case 13:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car13.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCar.style.height="200px"
+                    notUserCar.style.width="120px"
+                    notUserCarStep=5;
+                    break;
+                case 14:
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car14.png?raw=true) no-repeat";
+                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.backgroundSize="contain";
+                    notUserCarStep=8;
+                    break;
+            }
+            
+            // Adding the vehicle on the road
+            road.appendChild(notUserCar);
+    
+            // Positioning the vehicle on some random side of the road.
+            notUserCar.style.left=(Math.floor(Math.random()*(744.5-491.5+1)) + 491.5)+"px";
+            notUserCar.style.top="-150px";
         }
-        
-        // Adding the vehicle on the road
-        road.appendChild(notUserCar);
+    
+        // Selecting all cars that the user does not drive.
+        let notUserCars=document.querySelectorAll('.notUserCar');
+    
+        // Sentence that allows us to work one by one each element with a common class.
+        notUserCars.forEach(notUserCar => {
+            // Line of code that allows the car to reach the point collector.
+            notUserCar.style.top=(notUserCar.getBoundingClientRect().y+5)+'px';
+    
+            // Evaluating whether there is a collision.
+            notUserCars.forEach(car => {
+                if (
+                    ((car.getBoundingClientRect().left < userCar.getBoundingClientRect().left && car.getBoundingClientRect().left < userCar.getBoundingClientRect().right) &&
+                    (car.getBoundingClientRect().right < userCar.getBoundingClientRect().right && car.getBoundingClientRect().right > userCar.getBoundingClientRect().left) &&
+                    (car.getBoundingClientRect().top < userCar.getBoundingClientRect().top && car.getBoundingClientRect().top < userCar.getBoundingClientRect().bottom) && 
+                    (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top))
+                    || (
+                    (car.getBoundingClientRect().right > userCar.getBoundingClientRect().left && car.getBoundingClientRect().right > userCar.getBoundingClientRect().right) &&
+                    (car.getBoundingClientRect().left < userCar.getBoundingClientRect().right && car.getBoundingClientRect().left > userCar.getBoundingClientRect().left) &&
+                    (car.getBoundingClientRect().top < userCar.getBoundingClientRect().top && car.getBoundingClientRect().top < userCar.getBoundingClientRect().bottom) && 
+                    (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top)
+                    )
+    
+                ){
+                    // Removing all the cars except the user one.
+                    notUserCars.forEach(notUserCar => {notUserCar.remove()})
+    
+                    // Reseting the Crazy Points.
+                    score.textContent="0 pts";
+    
+                    // Displaying the game over message.
+                    messaggeTitle.innerHTML="¡Has Perdido!";
+                    messaggeInfo.innerHTML="Presiona  <b> ESCAPE </b>  para volver a jugar.";
+                    overlay.style.display="flex"
+    
+                    overlay.addEventListener("keydown", (e) =>{
+                        if (e.code == "Escape"){
+                            overlay.style.display="none"
+                        }
+                    })
 
-        // Positioning the vehicle on some random side of the road.
-        notUserCar.style.left=(Math.floor(Math.random()*(744.5-491.5+1)) + 491.5)+"px";
-        notUserCar.style.top="-150px";
-    }
-
-    // Selecting all cars that the user does not drive.
-    let notUserCars=document.querySelectorAll('.notUserCar');
-
-    // Sentence that allows us to work one by one each element with a common class.
-    notUserCars.forEach(notUserCar => {
-        // Line of code that allows the car to reach the point collector.
-        notUserCar.style.top=(notUserCar.getBoundingClientRect().y+10)+'px';
-
-        // Evaluando si existe una colisión
-        notUserCars.forEach(car => {
-            if (
-                ((car.getBoundingClientRect().left < userCar.getBoundingClientRect().left && car.getBoundingClientRect().left < userCar.getBoundingClientRect().right) &&
-                (car.getBoundingClientRect().right < userCar.getBoundingClientRect().right && car.getBoundingClientRect().right > userCar.getBoundingClientRect().left) &&
-                (car.getBoundingClientRect().top < userCar.getBoundingClientRect().top && car.getBoundingClientRect().top < userCar.getBoundingClientRect().bottom) && 
-                (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top))
-                || (
-                (car.getBoundingClientRect().right > userCar.getBoundingClientRect().left && car.getBoundingClientRect().right > userCar.getBoundingClientRect().right) &&
-                (car.getBoundingClientRect().left < userCar.getBoundingClientRect().right && car.getBoundingClientRect().left > userCar.getBoundingClientRect().left) &&
-                (car.getBoundingClientRect().top < userCar.getBoundingClientRect().top && car.getBoundingClientRect().top < userCar.getBoundingClientRect().bottom) && 
-                (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top)
-                )
-
-            ){
-                score.textContent="0 pts";
+                    pause();
+                }
+            })
+    
+            // Evaluating whether the car that is going against the user's path has already reached the point collector.
+            if (notUserCar.getBoundingClientRect().top > pointCollector.getBoundingClientRect().bottom){
+    
+                // Changing the score.
+                score.textContent=(parseInt(score.textContent)+10)+" pts";
+    
+                // Removing the car 'cause is useless,
+                notUserCar.remove();
+    
+                // If the user reach another 5 points for his score the program will give him "fuel", the "fuel" give him immunity.
+                if (parseInt(score.textContent)%5==0 && parseInt(fuel.textContent)<100){
+                    fuel.textContent=(parseInt(fuel.textContent)+25)+" %";
+                }
             }
         })
+    },100);
+}
 
-        // Evaluating whether the car that is going against the user's path has already reached the point collector.
-        if (notUserCar.getBoundingClientRect().top > pointCollector.getBoundingClientRect().bottom){
+let pause = () => {
+    if (window.getComputedStyle(overlay).display == "flex"){
+        clearInterval(gameInterval);
+    }else if(window.getComputedStyle(overlay).display == "none"){
+        game();
+    }
+}
 
-            // Changing the score.
-            score.textContent=(parseInt(score.textContent)+1)+" pts";
+// Event for player car movement.
+road.addEventListener("keydown", (e) => {
+    if ((e.code == "ArrowLeft" || e.code == "KeyA") && userCar.getBoundingClientRect().x>=491.5){ userCar.style.left = userCar.getBoundingClientRect().x - 6 + "px"; }
+    if ((e.code == "ArrowRight" || e.code == "KeyD") && userCar.getBoundingClientRect().x<=744){ userCar.style.left = userCar.getBoundingClientRect().x + 6 + "px"; }
+    if ((e.code == "ArrowDown" || e.code == "KeyS") && userCar.getBoundingClientRect().y<=494){ userCar.style.top = userCar.getBoundingClientRect().y + 6 + "px"; }
+    if ((e.code == "ArrowUp" || e.code == "KeyW") && userCar.getBoundingClientRect().y>=50){ userCar.style.top = userCar.getBoundingClientRect().y - 6 + "px"; }
+    if ((e.code == "KeyF") && parseInt(fuel.textContent) > 0){ fuel.textContent=parseInt(fuel.textContent)-25 + " %"; }
+    if (e.code == "Escape" && messageDisplay == true){
+        overlay.style.display="none";
+        pause();
 
-            // Removing the car 'cause is useless,
-            notUserCar.remove();
+        messageDisplay=false;
+    }
+});
 
-            // If the user reach another 5 points for his score the program will give him "fuel", the "fuel" give him immunity.
-            if (parseInt(score.textContent)%5==0 && parseInt(fuel.textContent)<100){
-                fuel.textContent=(parseInt(fuel.textContent)+25)+" %";
-            }
-        }
-    })
-},100);
+pauseButton.addEventListener("click", () => {
+    if (messageDisplay == false){
+        messaggeTitle.innerHTML="Juego En Pausa";
+        messaggeInfo.innerHTML="Presiona  <b> ESCAPE </b>  para volver a jugar.";
+        overlay.style.display="flex";
+        pause();
+
+        messageDisplay=true;
+    }
+})
+
+pause();
