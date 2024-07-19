@@ -1,7 +1,8 @@
 // Creating the program constants.
     // Audio
-    const gameOver=document.querySelector("#gameOver");
-    const gameTheme=document.querySelector("#gameTheme");
+    const gameOver=new Audio("../sources/gameOver_crashSoundEffect.mp3");
+    const gameTheme=new Audio("../sources/gameSoundTrackTheme.mp3");
+    gameTheme.loop = true;
 
     // Menu buttons.
     const ingameMenu=document.querySelector("#ingameMenu");
