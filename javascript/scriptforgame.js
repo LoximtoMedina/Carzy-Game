@@ -1,4 +1,8 @@
 // Creating the program constants.
+    // Audio
+    const gameOver=document.querySelector("#gameOver");
+    const gameTheme=document.querySelector("#gameTheme");
+
     // Menu buttons.
     const ingameMenu=document.querySelector("#ingameMenu");
     const displaymenuButton=document.querySelector("#ingameMenu > li:nth-child(1)");
@@ -221,6 +225,13 @@ let game = () => {
     
                     // Reseting the Crazy Points.
                     score.textContent="0 pts";
+
+                    // Stoping the loop game audio.
+                    gameTheme.loop=false;
+                    gameTheme.pause();
+
+                    // Playing The Game Over Sound Effect.
+                    gameOver.play();
     
                     // Displaying the game over message.
                     messaggeTitle.innerHTML="¡Has Perdido!";
@@ -237,6 +248,9 @@ let game = () => {
                             overlay.style.display="none"
                         }
                     })
+                    
+                    //
+                    messaggeTitle.setAttribute("id", "gameOver");
 
                     // Running the function to evaluate whether the game continues or not.
                     pause();
@@ -279,6 +293,17 @@ let pause = () => {
         clearInterval(gameInterval);
         game();
     }
+    if (messaggeTitle.getAttribute("id") == "pause"){
+        gameTheme.loop=true;
+        gameTheme.play();
+    }
+    else if(messaggeTitle.getAttribute("id") == "gameOver"){
+        gameTheme.loop=false;
+        gameTheme.pause();
+    }else if(messaggeTitle.getAttribute("id") == null){
+        gameTheme.loop=true;
+        gameTheme.play();
+    }
 }
 
 // Event for player car movement.
@@ -292,6 +317,7 @@ road.addEventListener("keydown", (e) => {
     // Condition responsible for removing the overlay (Pause or Game Over) if it is there. 
     if (e.code == "Escape" && (messageDisplay == true || window.getComputedStyle(overlay).display == "flex")){
         overlay.style.display="none";
+        messaggeTitle.removeAttribute("id");
         pause();
 
         messageDisplay=false;
@@ -302,6 +328,7 @@ road.addEventListener("keydown", (e) => {
 pauseButton.addEventListener("click", () => {
     if (messageDisplay == false){
         messaggeTitle.innerHTML="Juego En Pausa";
+        messaggeTitle.setAttribute("id", "gameOver");
         messaggeInfo.innerHTML="Presiona  <b> ESCAPE </b>  para volver a jugar.";
         overlay.style.display="flex";
         pause();
@@ -312,3 +339,6 @@ pauseButton.addEventListener("click", () => {
 
 // Evaluating if the game is in pause or not
 pause();
+
+// Playing the audio
+gameTheme.play();
