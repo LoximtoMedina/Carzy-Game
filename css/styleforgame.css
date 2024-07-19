@@ -169,7 +169,7 @@ nav{
 
     /* Positioning. */
     position: absolute;
-    left: calc(50% - 22.5px);
+    left: calc(50% - 40px);
     z-index: 1000;
     bottom: 10px;
 }

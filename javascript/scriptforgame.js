@@ -31,6 +31,7 @@ let menuClick=false;
 let messageDisplay=false;
 let pauseClick=false;
 let timeInterval=0;
+let spawnRate=80;
 let notUserCarStep=0;
 
 // Funciones hechas a parte porque JavaScript es marica.
@@ -85,7 +86,7 @@ let game = () => {
         // Adding 1 more for the time interval;
         timeInterval++;
     
-        if (timeInterval%35==0){
+        if (timeInterval%spawnRate==0){
             // Creating the car that will enter the road against traffic.
             let notUserCar=document.createElement('div');
     
@@ -198,7 +199,7 @@ let game = () => {
         // Sentence that allows us to work one by one each element with a common class.
         notUserCars.forEach(notUserCar => {
             // Line of code that allows the car to reach the point collector.
-            notUserCar.style.top=(notUserCar.getBoundingClientRect().y+5)+'px';
+            notUserCar.style.top=(notUserCar.getBoundingClientRect().y+6)+'px';
     
             // Evaluating whether there is a collision.
             notUserCars.forEach(car => {
@@ -225,13 +226,19 @@ let game = () => {
                     messaggeTitle.innerHTML="¡Has Perdido!";
                     messaggeInfo.innerHTML="Presiona  <b> ESCAPE </b>  para volver a jugar.";
                     overlay.style.display="flex"
-    
+
+                    // Positioning the car again.
+                    userCar.style.left="calc(50% - 40px)";
+                    userCar.style.top="calc(100% - 160px)";
+                    
+                    // Event for quit the game over screen.
                     overlay.addEventListener("keydown", (e) =>{
                         if (e.code == "Escape"){
                             overlay.style.display="none"
                         }
                     })
 
+                    // Running the function to evaluate whether the game continues or not.
                     pause();
                 }
             })
@@ -240,7 +247,7 @@ let game = () => {
             if (notUserCar.getBoundingClientRect().top > pointCollector.getBoundingClientRect().bottom){
     
                 // Changing the score.
-                score.textContent=(parseInt(score.textContent)+10)+" pts";
+                score.textContent=(parseInt(score.textContent)+1)+" pts";
     
                 // Removing the car 'cause is useless,
                 notUserCar.remove();
@@ -248,16 +255,28 @@ let game = () => {
                 // If the user reach another 5 points for his score the program will give him "fuel", the "fuel" give him immunity.
                 if (parseInt(score.textContent)%5==0 && parseInt(fuel.textContent)<100){
                     fuel.textContent=(parseInt(fuel.textContent)+25)+" %";
+                    
+                }
+
+                // Adding more spawn rate.
+                if (parseInt(score.textContent)%5==0){
+                    if (spawnRate>40){
+                        spawnRate-=10
+                    } 
                 }
             }
         })
-    },100);
+    },80);
 }
 
+// Function for evaluate if the game is in pause.
 let pause = () => {
     if (window.getComputedStyle(overlay).display == "flex"){
+        // If the game is in pause the interval that makes the game functional will be deleted.
         clearInterval(gameInterval);
     }else if(window.getComputedStyle(overlay).display == "none"){
+        // If the game isn't in pause this function will creates enemies, manages points and fuel, etc.
+        clearInterval(gameInterval);
         game();
     }
 }
@@ -269,7 +288,9 @@ road.addEventListener("keydown", (e) => {
     if ((e.code == "ArrowDown" || e.code == "KeyS") && userCar.getBoundingClientRect().y<=494){ userCar.style.top = userCar.getBoundingClientRect().y + 6 + "px"; }
     if ((e.code == "ArrowUp" || e.code == "KeyW") && userCar.getBoundingClientRect().y>=50){ userCar.style.top = userCar.getBoundingClientRect().y - 6 + "px"; }
     if ((e.code == "KeyF") && parseInt(fuel.textContent) > 0){ fuel.textContent=parseInt(fuel.textContent)-25 + " %"; }
-    if (e.code == "Escape" && messageDisplay == true){
+
+    // Condition responsible for removing the overlay (Pause or Game Over) if it is there. 
+    if (e.code == "Escape" && (messageDisplay == true || window.getComputedStyle(overlay).display == "flex")){
         overlay.style.display="none";
         pause();
 
@@ -277,6 +298,7 @@ road.addEventListener("keydown", (e) => {
     }
 });
 
+// Function for the pause button in the ingame menu
 pauseButton.addEventListener("click", () => {
     if (messageDisplay == false){
         messaggeTitle.innerHTML="Juego En Pausa";
@@ -288,4 +310,5 @@ pauseButton.addEventListener("click", () => {
     }
 })
 
+// Evaluating if the game is in pause or not
 pause();
