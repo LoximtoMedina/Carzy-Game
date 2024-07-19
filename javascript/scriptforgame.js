@@ -298,6 +298,7 @@ let pause = () => {
         gameTheme.play();
     }
     else if(messaggeTitle.getAttribute("id") == "gameOver"){
+        gameTheme.currentTime = 0;
         gameTheme.loop=false;
         gameTheme.pause();
     }else if(messaggeTitle.getAttribute("id") == null){
