@@ -195,12 +195,10 @@ nav{
 
     /* Positioning. */
     position: absolute;
-    top: 0;
-
-    border: 1px solid red;
 
     /* Putting the cars in the correct line. */
     transform: rotate(180deg);
+    
     /* Transitions */
     transition: all 0.1s;
 }

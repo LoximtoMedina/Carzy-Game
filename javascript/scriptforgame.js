@@ -48,7 +48,6 @@ let spawnRate=60;
 
 let immunity=false;
 
-// Funciones hechas a parte porque JavaScript es marica.
 let hover_on = () => {displaymenuButton.style.background= "#9F7A00";};
 let hover_off = () => {displaymenuButton.style.background= "#DFAB00";};
 
@@ -247,8 +246,6 @@ let game = () => {
                             overlay.style.display="none"
                         }
                     })
-                    
-                    //
                     messaggeTitle.setAttribute("id", "gameOver");
 
                     // Running the function to evaluate whether the game continues or not.
@@ -292,6 +289,7 @@ let pause = () => {
         clearInterval(gameInterval);
         game();
     }
+
     if (messaggeTitle.getAttribute("id") == "pause"){
         gameTheme.loop=true;
     }
@@ -332,7 +330,7 @@ road.addEventListener("keydown", (e) => {
 pauseButton.addEventListener("click", () => {
     if (messageDisplay == false){
         messaggeTitle.innerHTML="Juego En Pausa";
-        messaggeTitle.setAttribute("id", "gameOver");
+        messaggeTitle.setAttribute("id", "pause");
         messaggeInfo.innerHTML="Presiona  <b> ESCAPE </b>  para volver a jugar.";
         overlay.style.display="flex";
         pause();
@@ -349,6 +347,8 @@ menuButton.addEventListener("click", () => {
     gameTheme.currentTime=0;
 
     userCar.style.display="none";
+    
+    const notUserCars=document.querySelectorAll(".notUserCar");
     notUserCars.forEach(notUserCar => {notUserCar.remove()})
 })
 
