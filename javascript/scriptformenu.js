@@ -1,3 +1,25 @@
+//variables del menu de volumen
+const soundSettingsButton = document.querySelector('.settings');
+const soundSettingsMenu = document.getElementById('sound-settings-menu');
+const closeSoundSettingsButton = document.getElementById('close-sound-settings');
+const soundOnButton = document.getElementById('sound-on');
+const soundOffButton = document.getElementById('sound-off');
+const volumeControl = document.getElementById('volume-control');
+const audio = document.getElementById('background-audio');
+
+//botones de menu
+const autos=document.querySelector('.autos');
+const dificultad=document.querySelector('.dificultad');
+const iniciar=document.querySelector('.iniciar');
+
+//ventanas/cajas autos/dificultades
+const modo=document.querySelector('.caja-dificultad');
+const carros=document.querySelector('.carSelector');
+
+//definir los botones next y prev
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+
 /*Para mover las opciones de los carros*/
 const cars = [
   "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car1.png?raw=true) no-repeat center",
@@ -11,10 +33,6 @@ const cars = [
 ];
 
 let car = 0;
-
-//definir los botones next y prev
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
 
 //eventos de los botones next y prev
 prevButton.addEventListener('click', ()=>{
@@ -38,15 +56,6 @@ nextButton.addEventListener('click', ()=>{
   userCarSkin.style.backgroundSize="contain";
 });
 
-//botones de menu
-const autos=document.querySelector('.autos');
-const dificultad=document.querySelector('.dificultad');
-const iniciar=document.querySelector('.iniciar');
-
-//ventanas/cajas autos/dificultades
-const modo=document.querySelector('.caja-dificultad');
-const carros=document.querySelector('.carSelector');
-
 /*Aparecer el menu de carros*/
 autos.addEventListener('click',function(){
   carros.style.display='flex';
@@ -69,7 +78,12 @@ aceptar.addEventListener('click', () => {
 
 /*Aparecer el Menu de dificultades*/
 dificultad.addEventListener('click',function(){
-    modo.style.display='flex';
+  modo.style.display='flex';
+  dificultad.style.display="none";
+  iniciar.style.display="none";
+  autos.style.display="none";
+  soundSettingsButton.style.display="none";
+
 })
 
 
@@ -98,39 +112,40 @@ iniciar.addEventListener("click",function(){
 const facil=document.querySelector('.facil')
 const medio=document.querySelector('.medio')
 const dificil=document.querySelector('.dificil')
-let op;
+
 //elegir dificultad
 facil.addEventListener('click',function(){
-  op='facil'
   modo.style.display='none';
+  dificultad.style.display="flex";
+  iniciar.style.display="flex";
+  autos.style.display="flex";
+  soundSettingsButton.style.display="flex";
 })
 
 medio.addEventListener('click',function(){
-  op='medio'
   modo.style.display='none';
+  dificultad.style.display="flex";
+  iniciar.style.display="flex";
+  autos.style.display="flex";
+  soundSettingsButton.style.display="flex";
 })
 
 dificil.addEventListener('click',function(){
-  op='dificil'
   modo.style.display='none';
+  dificultad.style.display="flex";
+  iniciar.style.display="flex";
+  autos.style.display="flex";
+  soundSettingsButton.style.display="flex";
 })
 
-//variables del menu de volumen
-const soundSettingsButton = document.querySelector('.settings');
-const soundSettingsMenu = document.getElementById('sound-settings-menu');
-const closeSoundSettingsButton = document.getElementById('close-sound-settings');
-const soundOnButton = document.getElementById('sound-on');
-const soundOffButton = document.getElementById('sound-off');
-const volumeControl = document.getElementById('volume-control');
-const audio = document.getElementById('background-audio');
+soundSettingsButton.addEventListener('click', function () {
+    if (soundSettingsMenu.style.display === 'block') {
+        soundSettingsMenu.style.display = 'none';
+    } else {
+        soundSettingsMenu.style.display = 'block';
+    }
+});
 
-    soundSettingsButton.addEventListener('click', function () {
-        if (soundSettingsMenu.style.display === 'block') {
-            soundSettingsMenu.style.display = 'none';
-        } else {
-            soundSettingsMenu.style.display = 'block';
-        }
-    });
 //para activar la musica
     soundOnButton.addEventListener('click', function () {
         audio.play();
