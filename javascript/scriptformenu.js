@@ -1,52 +1,42 @@
 /*Para mover las opciones de los carros*/
-const imglis = [];
-let index = 0;
-const totalImages = 14;
+const cars = [
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car1.png?raw=true) no-repeat center",
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car2.png?raw=true) no-repeat center",
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car3.png?raw=true) no-repeat center",
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car4.png?raw=true) no-repeat center",
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car6.png?raw=true) no-repeat center",
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car7.png?raw=true) no-repeat center",
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car8.png?raw=true) no-repeat center",
+  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car9.png?raw=true) no-repeat center"
+];
 
-function opimagen(index) {
-  const images = document.querySelectorAll('.img');//images es como una lista de todos los elementos con la clase .img
-  images.forEach((img, i) => {//es un ciclo en el cual la variable i toma el valor de la posicion de cada elemento
-    if (i === index) {
-      img.style.display = 'block';
-    } else {
-      img.style.display = 'none';
-    }
-  });
-}
+let car = 0;
 
-function prevImage() {
-  index = (index - 1 + totalImages) % totalImages;
-  opimagen(index);
-}
-
-function nextImage() {
-  index = (index + 1) % totalImages;
-  opimagen(index);
-}
 //definir los botones next y prev
-const prevButton = document.querySelector('.btn1');
-const nextButton = document.querySelector('.btn2');
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
 
 //eventos de los botones next y prev
-prevButton.addEventListener('click', prevImage);
-nextButton.addEventListener('click', nextImage);
-opimagen(index);//la imagen base que se va cargar
-
-// Para agregar todas las URLs en una lista
-document.querySelectorAll('.img img').forEach(img => {
-    imglis.push(img.src);
+prevButton.addEventListener('click', ()=>{
+  if (car==0){
+    car=7;
+  }else{
+    car-=1;
+  }
+  let userCarSkin=document.querySelector(".carSkin");
+  userCarSkin.style.background=cars[car];
+  userCarSkin.style.backgroundSize="contain";
 });
-
-//definir el boton aceptar
-const aceptar = document.querySelector('.aceptar');
-
-//Al darle click aceptar se almacena la url de la imagen
-aceptar.addEventListener('click', function() {
-    src=imglis[index];
-    carros.style.display='none';
-    aceptar.style.display='none';
+nextButton.addEventListener('click', ()=>{
+  if (car==7){
+    car=0;
+  }else{
+    car+=1;
+  }
+  let userCarSkin=document.querySelector(".carSkin");
+  userCarSkin.style.background=cars[car];
+  userCarSkin.style.backgroundSize="contain";
 });
-
 
 //botones de menu
 const autos=document.querySelector('.autos');
@@ -55,13 +45,27 @@ const iniciar=document.querySelector('.iniciar');
 
 //ventanas/cajas autos/dificultades
 const modo=document.querySelector('.caja-dificultad');
-const carros=document.querySelector('.caja-autos');
+const carros=document.querySelector('.carSelector');
 
 /*Aparecer el menu de carros*/
 autos.addEventListener('click',function(){
-    carros.style.display='flex';
-    aceptar.style.display='flex';
+  carros.style.display='flex';
+  aceptar.style.display='flex';
 });
+
+//definir el boton aceptar
+const aceptar = document.querySelector('.aceptar');
+
+//Al darle click aceptar se almacena la url de la imagen
+aceptar.addEventListener('click', () => {
+    carros.style.display='none';
+    aceptar.style.display='none';
+
+    let userCar=document.querySelector(".userCar");
+    userCar.style.background=cars[car];
+    userCar.style.backgroundSize="contain";
+});
+
 
 /*Aparecer el Menu de dificultades*/
 dificultad.addEventListener('click',function(){

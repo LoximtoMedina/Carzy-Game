@@ -107,90 +107,76 @@ let game = () => {
             // Giving the car a texture.
             switch ((Math.floor(Math.random()*(14-1+1)) + 1)){
                 case 1:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car1.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car1.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=8;
                     break;
                 case 2:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car2.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car2.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=8;
                     break;
                 case 3:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car3.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car3.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=8;
                     break;
                 case 4:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car4.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car4.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=8;
                     break;
                 case 5:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car5.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car5.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=7;
                     break;
                 case 6:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car6.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car6.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=10;
                     break;
                 case 7:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car7.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car7.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=10;
                     break;
                 case 8:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car8.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car8.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=8;
                     break;
                 case 9:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car9.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car9.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=7;
                     break;
                 case 10:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car10.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car10.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=17;
                     break;
                 case 11:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car11.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car11.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=8;
                     break;
                 case 12:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car12.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car12.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCar.style.height="250px"
                     notUserCar.style.width="85px"
                     notUserCarStep=5;
                     break;
                 case 13:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car13.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car13.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCar.style.height="200px"
                     notUserCar.style.width="100px"
                     notUserCarStep=5;
                     break;
                 case 14:
-                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car14.png?raw=true) no-repeat";
-                    notUserCar.style.backgroundPosition="center";
+                    notUserCar.style.background="url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car14.png?raw=true) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCarStep=8;
                     break;
@@ -366,8 +352,6 @@ menuButton.addEventListener("click", () => {
 
 // Evaluating if the game is in pause or not
 pause();
-
-fuel.textContent=parseInt(fuel.textContent) + 100 + " %";
 
 // Playing the audio
 gameTheme.play()
