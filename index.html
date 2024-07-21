@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Linking the CSS and JavaScript file respectively. -->
+    <!-- Linking the CSS file for the menu and the game. -->
     <link rel="stylesheet" href="css/styleforgame.css">
-    <script type="module" src="javascript/scriptforgame.js"></script>
+    <link rel="stylesheet" href="css/styleformenu.css">
+
+    <!-- Linking the JavaScript file for the menu and the game. -->
+    <script id="game"></script>
+    <script type="module" src="javascript/scriptformenu.js"></script>
 
     <!-- Page Icon. -->
     <link rel="shortcut icon" href="sources/CarreraF1Logo.png">
@@ -21,6 +25,10 @@
     <title>Carrera F1</title>
 </head>
 <body>
+    <!-- Audio -->
+    <audio id="gameTheme" src="../sources/gameSoundTrackTheme.mp3" loop></audio>
+    <audio id="gameOver" src="../sources/gameOver_crashSoundEffect.mp3"></audio>
+
     <!-- Score Table. -->
     <div class="scoreTable">
         <header> Tabla De Puntuación </header>
@@ -46,12 +54,77 @@
     <!-- Car. -->
     <div class="userCar"></div>
 
-    <!-- overlay -->
+    <!-- Overlay. -->
     <div class="overlay">
         <div class="message">
             <header></header>
             <p></p>
         </div>
+    </div>
+
+    <!-- Menu. -->
+    <div class="menu">
+        <div class="cielo"></div>
+        <div class="carretera"></div>
+        <div class="auto">
+            <div class="rueda rueda-delantera"></div>
+            <div class="rueda rueda-trasera"></div>
+        </div>
+        <div class="nube nube1"></div>
+        <div class="nube nube2"></div>
+        <div class="nube nube3"></div>
+        <div class="nube nube4"></div>
+        <div class="nube nube5"></div>
+        <div class="sol"></div>
+        <div class="cortina"></div>
+        <div class="botones">
+            <!--Botones del menu-->
+            <div class="iniciar"></div>
+            <div class="autos"></div>
+            <div class="dificultad"></div>
+
+            <!-- caja para elegir dificultad-->
+            <div class="caja-dificultad">
+            <div class="modo facil">Fácil</div>
+            <div class="modo medio">Media</div>
+            <div class="modo dificil">Difícil</div>
+        </div>
+         
+        <!--Opciones para elegir el carro-->  
+        <div class="caja-autos">
+        <button class="btn1"></button>
+        <div class="opciones">
+            <div class="img i1"><a href="#"><img src="https://i.ibb.co/MffqY6T/carro1-removebg-preview.png" alt="carro1-removebg-preview" border="0"></a></div>
+            <div class="img i2">  <a href="#"><img src="https://i.ibb.co/kGfChmd/carro2-removebg-preview.png" alt="carro2-removebg-preview" border="0"></a> </div>
+            <div class="img i3"><a href="#"><img src="https://i.ibb.co/1zCw56R/carro3-removebg-preview.png" alt="carro3-removebg-preview" border="0"></a></div>
+            <div class="img i4">  <a href="#"><img src="https://i.ibb.co/jTcLxF3/carro4-removebg-preview.png" alt="carro4-removebg-preview" border="0"></a></div>
+            <div class="img i5"> <a href="#"><img src="https://i.ibb.co/CBpf4QD/carro5-removebg-preview.png" alt="carro5-removebg-preview" border="0"></a> </div>
+            <div class="img i6"><a href="#"><img src="https://i.ibb.co/rGsJBNJ/carro6-removebg-preview.png" alt="carro6-removebg-preview" border="0"></a> </div>
+            <div class="img i7"><a href="#"><img src="https://i.ibb.co/GxyX21q/carro7-removebg-preview.png" alt="carro7-removebg-preview" border="0"></a> </div>
+            <div class="img i8"> <a href="#"><img src="https://i.ibb.co/qCc9CnF/carro8-removebg-preview.png" alt="carro8-removebg-preview" border="0"></a></div>
+            <div class="img i9"> <a href="#"><img src="https://i.ibb.co/B2SMPSQ/carro9-removebg-preview.png" alt="carro9-removebg-preview" border="0"></a></div>
+            <div class="img i10">  <a href="#"><img src="https://i.ibb.co/JqMFZ4f/carro10-removebg-preview.png" alt="carro10-removebg-preview" border="0"></a> </div>
+            <div class="img i11"> <a href="#"><img src="https://i.ibb.co/5xdS7fk/carro11-removebg-preview.png" alt="carro11-removebg-preview" border="0"></a>  </div>
+            <div class="img i12"><a href="#"><img src="https://i.ibb.co/LYMm36J/carro12-removebg-preview.png" alt="carro12-removebg-preview" border="0"></a> </div>
+            <div class="img i13"><a href="#"><img src="https://i.ibb.co/dM1yZpj/carro13-removebg-preview.png" alt="carro13-removebg-preview" border="0"></a></div>
+            <div class="img i14">  <a href="#"><img src="https://i.ibb.co/g90gkFB/carro14-removebg-preview.png" alt="carro14-removebg-preview" border="0"></a></div>
+        </div>
+          <button class="btn2"></button>
+        </div>
+
+            <!--- Boton de Aceptar, Para elegir un carro  --->
+            <div class="aceptar">Aceptar</div>  
+            <div class="settings"></div>
+
+            <!--- Menu de volumen  --->
+            <div id="sound-settings-menu" class="mini-menu">
+                <label for="volume-control">Volumen:</label>
+                <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5"><br><br>
+                <button id="sound-on" class="active">Activar</button>
+                <button id="sound-off" class="desactive">Desactivar</button>
+            </div>
+       </div> 
+          
     </div>
 </body>
 </html>

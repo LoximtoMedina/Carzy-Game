@@ -1,8 +1,7 @@
 // Creating the program constants.
     // Audio
-    const gameOver=new Audio("../sources/gameOver_crashSoundEffect.mp3");
-    const gameTheme=new Audio("../sources/gameSoundTrackTheme.mp3");
-    gameTheme.loop = true;
+    const gameTheme=document.querySelector("#gameTheme");
+    const gameOver=document.querySelector("#gameOver");
 
     // Menu buttons.
     const ingameMenu=document.querySelector("#ingameMenu");
@@ -13,6 +12,10 @@
     // Score table info.
     const score=document.querySelector(".score");
     const fuel=document.querySelector(".fuel")
+
+    // Message
+    const messaggeTitle=document.querySelector(".message > header");
+    const messaggeInfo=document.querySelector(".message > p");
 
     // Road.
     const road=document.querySelector("body");
@@ -26,9 +29,8 @@
     // Overlay
     const overlay=document.querySelector(".overlay");
 
-    // Message
-    const messaggeTitle=document.querySelector(".message > header");
-    const messaggeInfo=document.querySelector(".message > p");
+    // Menu
+    const menu=document.querySelector(".menu");
 
 // Creating the program variables.
 let gameInterval;
@@ -36,7 +38,7 @@ let menuClick=false;
 let messageDisplay=false;
 let pauseClick=false;
 let timeInterval=0;
-let spawnRate=80;
+let spawnRate=60;
 let notUserCarStep=0;
 
 // Funciones hechas a parte porque JavaScript es marica.
@@ -91,7 +93,7 @@ let game = () => {
         // Adding 1 more for the time interval;
         timeInterval++;
     
-        if (timeInterval%spawnRate==0){
+        if ((timeInterval%spawnRate==0) && window.getComputedStyle(menu).display=="none"){
             // Creating the car that will enter the road against traffic.
             let notUserCar=document.createElement('div');
     
@@ -233,6 +235,7 @@ let game = () => {
 
                     // Playing The Game Over Sound Effect.
                     gameOver.play();
+                    gameTheme.playbackRate=1
     
                     // Displaying the game over message.
                     messaggeTitle.innerHTML="¡Has Perdido!";
@@ -270,7 +273,7 @@ let game = () => {
                 // If the user reach another 5 points for his score the program will give him "fuel", the "fuel" give him immunity.
                 if (parseInt(score.textContent)%5==0 && parseInt(fuel.textContent)<100){
                     fuel.textContent=(parseInt(fuel.textContent)+25)+" %";
-                    
+                    gameTheme.playbackRate+=0.1
                 }
 
                 // Adding more spawn rate.
@@ -339,8 +342,19 @@ pauseButton.addEventListener("click", () => {
     }
 })
 
+// Function for show the menu.
+menuButton.addEventListener("click", () => {
+    menu.style.display="block";
+
+    gameTheme.pause();
+    gameTheme.currentTime=0;
+
+    userCar.style.display="none";
+    notUserCars.forEach(notUserCar => {notUserCar.remove()})
+})
+
 // Evaluating if the game is in pause or not
 pause();
 
 // Playing the audio
-gameTheme.play();
+gameTheme.play()

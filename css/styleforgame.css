@@ -166,8 +166,10 @@ nav{
     /* Background. */
     background: url(../sources/car3.png);
     background-size: cover;
-
+    border: 1px solid red;
+    
     /* Positioning. */
+    display: none;
     position: absolute;
     left: calc(50% - 40px);
     z-index: 1000;
@@ -196,8 +198,12 @@ nav{
     position: absolute;
     top: 0;
 
+    border: 1px solid red;
+
     /* Putting the cars in the correct line. */
     transform: rotate(180deg);
+    /* Transitions */
+    transition: all 0.1s;
 }
 
 .overlay{
