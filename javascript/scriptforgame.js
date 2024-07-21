@@ -3,6 +3,9 @@
     const gameTheme=document.querySelector("#gameTheme");
     const gameOver=document.querySelector("#gameOver");
 
+    // Volume Control
+    const volumeControl = document.querySelector('#volume-control');
+
     // Menu buttons.
     const ingameMenu=document.querySelector("#ingameMenu");
     const displaymenuButton=document.querySelector("#ingameMenu > li:nth-child(1)");
@@ -291,7 +294,6 @@ let pause = () => {
     }
     if (messaggeTitle.getAttribute("id") == "pause"){
         gameTheme.loop=true;
-        gameTheme.play();
     }
     else if(messaggeTitle.getAttribute("id") == "gameOver"){
         gameTheme.currentTime = 0;
@@ -299,7 +301,6 @@ let pause = () => {
         gameTheme.pause();
     }else if(messaggeTitle.getAttribute("id") == null){
         gameTheme.loop=true;
-        gameTheme.play();
     }
 }
 
@@ -320,6 +321,7 @@ road.addEventListener("keydown", (e) => {
     if (e.code == "Escape" && (messageDisplay == true || window.getComputedStyle(overlay).display == "flex")){
         overlay.style.display="none";
         messaggeTitle.removeAttribute("id");
+        gameTheme.play();
         pause();
 
         messageDisplay=false;
@@ -353,5 +355,7 @@ menuButton.addEventListener("click", () => {
 // Evaluating if the game is in pause or not
 pause();
 
-// Playing the audio
-gameTheme.play()
+// The volume of the menu theme it's the same for the game theme
+volumeControl.addEventListener('input', () => {
+    gameTheme.volume = volumeControl.value;
+});

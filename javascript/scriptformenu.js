@@ -1,11 +1,12 @@
 //variables del menu de volumen
 const soundSettingsButton = document.querySelector('.settings');
 const soundSettingsMenu = document.getElementById('sound-settings-menu');
-const closeSoundSettingsButton = document.getElementById('close-sound-settings');
+
 const soundOnButton = document.getElementById('sound-on');
 const soundOffButton = document.getElementById('sound-off');
+
 const volumeControl = document.getElementById('volume-control');
-const audio = document.getElementById('background-audio');
+const menuTheme = document.querySelector('#menuTheme');
 
 //botones de menu
 const autos=document.querySelector('.autos');
@@ -19,6 +20,9 @@ const carros=document.querySelector('.carSelector');
 //definir los botones next y prev
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
+
+// Fondo del juego:
+const road=document.querySelector("body");
 
 /*Para mover las opciones de los carros*/
 const cars = [
@@ -89,7 +93,7 @@ dificultad.addEventListener('click',function(){
 
 //Ingresar al Juego
 const menu=document.querySelector('.menu');
-iniciar.addEventListener("click",function(){
+iniciar.addEventListener("click", () => {
     // Oculta el menú.
     menu.style.display='none';
 
@@ -102,9 +106,16 @@ iniciar.addEventListener("click",function(){
     game.setAttribute("type", "module");
     game.setAttribute("src", "javascript/scriptforgame.js");
 
-    // Reproduce el audio.
+    // Reproduce el audio para empezar el juego, el audio del juego y el del menú.
     const gameTheme=document.querySelector("#gameTheme");
-    gameTheme.play()
+    const gameStartSound=document.querySelector("#gameStart");
+    gameStartSound.currentTime=1;
+    menuTheme.pause();
+    gameStartSound.play()
+  
+    setTimeout(() => {
+      gameTheme.play();
+    }, 4500)  
 })
 
 
@@ -114,32 +125,41 @@ const medio=document.querySelector('.medio')
 const dificil=document.querySelector('.dificil')
 
 //elegir dificultad
-facil.addEventListener('click',function(){
+facil.addEventListener('click', () => {
   modo.style.display='none';
   dificultad.style.display="flex";
   iniciar.style.display="flex";
   autos.style.display="flex";
   soundSettingsButton.style.display="flex";
+
+  road.style.background="url(../sources/NIVELF-MASTER.png) center";
+  road.style.backgroundSize="contain";
 })
 
-medio.addEventListener('click',function(){
+medio.addEventListener('click', () => {
   modo.style.display='none';
   dificultad.style.display="flex";
   iniciar.style.display="flex";
   autos.style.display="flex";
   soundSettingsButton.style.display="flex";
+
+  road.style.background="url(../sources/NIVELM-MASTER.png) center";
+  road.style.backgroundSize="contain";
 })
 
-dificil.addEventListener('click',function(){
+dificil.addEventListener('click', () =>{
   modo.style.display='none';
   dificultad.style.display="flex";
   iniciar.style.display="flex";
   autos.style.display="flex";
   soundSettingsButton.style.display="flex";
+
+  road.style.background="url(../sources/NIVELD-MASTER.png) center";
+  road.style.backgroundSize="contain";
 })
 
-soundSettingsButton.addEventListener('click', function () {
-    if (soundSettingsMenu.style.display === 'block') {
+soundSettingsButton.addEventListener('click', () => {
+    if (soundSettingsMenu.style.display == 'block') {
         soundSettingsMenu.style.display = 'none';
     } else {
         soundSettingsMenu.style.display = 'block';
@@ -147,14 +167,15 @@ soundSettingsButton.addEventListener('click', function () {
 });
 
 //para activar la musica
-    soundOnButton.addEventListener('click', function () {
-        audio.play();
-    });
+soundOnButton.addEventListener('click', () => {
+  menuTheme.playbackRate=1.1;
+  menuTheme.play();
+});
 //para pausar la musica
-    soundOffButton.addEventListener('click', function () {
-        audio.pause();
-    });
+soundOffButton.addEventListener('click', () => {
+  menuTheme.pause();
+});
 //manejar el volumen de la musica
-    volumeControl.addEventListener('input', function () {
-        audio.volume = volumeControl.value;
-    });
+volumeControl.addEventListener('input', () => {
+  menuTheme.volume = volumeControl.value;
+});

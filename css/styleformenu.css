@@ -249,11 +249,22 @@ body {
     .facil{
     background-color: #16a716;
     }
+    .facil:hover{
+        background-color: #118a11;
+    }
+
     .medio{
     background-color: #fef100;
     }
+    .medio:hover{
+        background-color: #d8cd03;
+    }
+
     .dificil{
     background-color: #eb1c25;
+    }
+    .dificil:hover{
+        background-color: #b8171f;
     }
 }
  
