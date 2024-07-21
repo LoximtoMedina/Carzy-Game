@@ -34,7 +34,7 @@ opimagen(index);//la imagen base que se va cargar
 
 // Para agregar todas las URLs en una lista
 document.querySelectorAll('.img img').forEach(img => {
-  imglis.push(img.src);
+    imglis.push(img.src);
 });
 
 //definir el boton aceptar
@@ -42,9 +42,9 @@ const aceptar = document.querySelector('.aceptar');
 
 //Al darle click aceptar se almacena la url de la imagen
 aceptar.addEventListener('click', function() {
-  src=imglis[index];
-  carros.style.display='none';
-  aceptar.style.display='none';
+    src=imglis[index];
+    carros.style.display='none';
+    aceptar.style.display='none';
 });
 
 
@@ -59,13 +59,13 @@ const carros=document.querySelector('.caja-autos');
 
 /*Aparecer el menu de carros*/
 autos.addEventListener('click',function(){
-  carros.style.display='flex';
-  aceptar.style.display='flex';
+    carros.style.display='flex';
+    aceptar.style.display='flex';
 });
 
 /*Aparecer el Menu de dificultades*/
 dificultad.addEventListener('click',function(){
-  modo.style.display='flex';
+    modo.style.display='flex';
 })
 
 

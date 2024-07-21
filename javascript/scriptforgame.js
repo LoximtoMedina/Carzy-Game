@@ -34,12 +34,16 @@
 
 // Creating the program variables.
 let gameInterval;
+
 let menuClick=false;
 let messageDisplay=false;
 let pauseClick=false;
+
 let timeInterval=0;
-let spawnRate=60;
 let notUserCarStep=0;
+let spawnRate=60;
+
+let immunity=false;
 
 // Funciones hechas a parte porque JavaScript es marica.
 let hover_on = () => {displaymenuButton.style.background= "#9F7A00";};
@@ -181,7 +185,7 @@ let game = () => {
                     notUserCar.style.backgroundPosition="center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCar.style.height="200px"
-                    notUserCar.style.width="120px"
+                    notUserCar.style.width="100px"
                     notUserCarStep=5;
                     break;
                 case 14:
@@ -214,12 +218,14 @@ let game = () => {
                     ((car.getBoundingClientRect().left < userCar.getBoundingClientRect().left && car.getBoundingClientRect().left < userCar.getBoundingClientRect().right) &&
                     (car.getBoundingClientRect().right < userCar.getBoundingClientRect().right && car.getBoundingClientRect().right > userCar.getBoundingClientRect().left) &&
                     (car.getBoundingClientRect().top < userCar.getBoundingClientRect().top && car.getBoundingClientRect().top < userCar.getBoundingClientRect().bottom) && 
-                    (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top))
-                    || (
-                    (car.getBoundingClientRect().right > userCar.getBoundingClientRect().left && car.getBoundingClientRect().right > userCar.getBoundingClientRect().right) &&
+                    (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top) && 
+                    (immunity==false))                    
+                    || 
+                    ((car.getBoundingClientRect().right > userCar.getBoundingClientRect().left && car.getBoundingClientRect().right > userCar.getBoundingClientRect().right) &&
                     (car.getBoundingClientRect().left < userCar.getBoundingClientRect().right && car.getBoundingClientRect().left > userCar.getBoundingClientRect().left) &&
                     (car.getBoundingClientRect().top < userCar.getBoundingClientRect().top && car.getBoundingClientRect().top < userCar.getBoundingClientRect().bottom) && 
-                    (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top)
+                    (car.getBoundingClientRect().bottom < userCar.getBoundingClientRect().bottom && car.getBoundingClientRect().bottom > userCar.getBoundingClientRect().top &&
+                    (immunity==false))
                     )
     
                 ){
@@ -317,7 +323,12 @@ road.addEventListener("keydown", (e) => {
     if ((e.code == "ArrowRight" || e.code == "KeyD") && userCar.getBoundingClientRect().x<=744){ userCar.style.left = userCar.getBoundingClientRect().x + 6 + "px"; }
     if ((e.code == "ArrowDown" || e.code == "KeyS") && userCar.getBoundingClientRect().y<=494){ userCar.style.top = userCar.getBoundingClientRect().y + 6 + "px"; }
     if ((e.code == "ArrowUp" || e.code == "KeyW") && userCar.getBoundingClientRect().y>=50){ userCar.style.top = userCar.getBoundingClientRect().y - 6 + "px"; }
-    if ((e.code == "KeyF") && parseInt(fuel.textContent) > 0){ fuel.textContent=parseInt(fuel.textContent)-25 + " %"; }
+
+    if ((e.code == "KeyF") && parseInt(fuel.textContent) > 0){ 
+        fuel.textContent=parseInt(fuel.textContent)-25 + " %";
+        immunity=true;
+        setTimeout(() => {immunity=false;}, 3000);
+    }
 
     // Condition responsible for removing the overlay (Pause or Game Over) if it is there. 
     if (e.code == "Escape" && (messageDisplay == true || window.getComputedStyle(overlay).display == "flex")){
@@ -355,6 +366,8 @@ menuButton.addEventListener("click", () => {
 
 // Evaluating if the game is in pause or not
 pause();
+
+fuel.textContent=parseInt(fuel.textContent) + 100 + " %";
 
 // Playing the audio
 gameTheme.play()

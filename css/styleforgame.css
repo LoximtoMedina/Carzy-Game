@@ -166,7 +166,6 @@ nav{
     /* Background. */
     background: url(../sources/car3.png);
     background-size: cover;
-    border: 1px solid red;
     
     /* Positioning. */
     display: none;
