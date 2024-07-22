@@ -132,7 +132,7 @@ facil.addEventListener('click', () => {
   autos.style.display="flex";
   soundSettingsButton.style.display="flex";
 
-  road.style.background="url(../sources/NIVELF-MASTER.png) center";
+  road.style.background="url(sources/NIVELF-MASTER.png) center";
   road.style.backgroundSize="contain";
 
   const dificultadSeleccionada=document.querySelector(".dificultadSeleccionada");
@@ -160,7 +160,7 @@ dificil.addEventListener('click', () =>{
   autos.style.display="flex";
   soundSettingsButton.style.display="flex";
 
-  road.style.background="url(../sources/NIVELD-MASTER.png) center";
+  road.style.background="url(sources/NIVELD-MASTER.png) center";
   road.style.backgroundSize="contain";
 
   const dificultadSeleccionada=document.querySelector(".dificultadSeleccionada");
