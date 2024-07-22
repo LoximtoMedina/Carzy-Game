@@ -116,6 +116,22 @@ iniciar.addEventListener("click", () => {
     setTimeout(() => {
       gameTheme.play();
     }, 4500)
+
+    // Evalúa la dificultad seleccionada por el usuario.
+    let difficultySelected=document.querySelector(".dificultadSeleccionada");
+    if (difficultySelected.textContent=="F"){
+        // Cambiando el tamaño del carro según la dificultad.
+        userCar.style.height="90px";
+        userCar.style.width="48px";
+      }else if (difficultySelected.textContent=="M"){
+        // Cambiando el tamaño del carro según la dificultad.
+        userCar.style.height="105px";
+        userCar.style.width="56px";
+      }else if (difficultySelected.textContent=="D"){
+        // Cambiando el tamaño del carro según la dificultad.
+        userCar.style.height="150px";
+        userCar.style.width="80px";
+    }
 })
 
 

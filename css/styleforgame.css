@@ -160,8 +160,8 @@ nav{
 /* User Car. */
 .userCar{
     /* Size. */
-    height: 150px;
-    width: 80px;
+    height: 90px;
+    width: 48px;
 
     /* Background. */
     background: url(../sources/car3.png);
@@ -185,8 +185,6 @@ nav{
     position: absolute;
     right: calc(50% - 15% + 5px);
     bottom: 0px;
-
-    border: 1px solid red;
 }
 
 /* otherCars */

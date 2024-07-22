@@ -43,7 +43,7 @@ let messageDisplay=false;
 let pauseClick=false;
 
 let timeInterval=0;
-let notUserCarStep=0;
+let carScale=1;
 let spawnRate=60;
 
 let immunity=false;
@@ -96,6 +96,29 @@ displaymenuButton.addEventListener("click", ()=>{
 let game = () => {
 
     gameInterval=setInterval( () =>{
+
+        // Evaluating the difficulty of the game and defining the variables based on it
+        let difficultySelected=document.querySelector(".dificultadSeleccionada");
+        if (difficultySelected.textContent=="F"){
+            // Changing the spawn rate based on the difficulty.
+            spawnRate=40;
+
+            // Changing the size of the car based on the difficulty.
+            carScale=0.6;
+        }else if (difficultySelected.textContent=="M"){
+            // Changing the spawn rate based on the difficulty.
+            spawnRate=40;
+
+            // Changing the size of the car based on the difficulty.
+            carScale=0.7;
+        }else if (difficultySelected.textContent=="D"){
+            // Changing the spawn rate based on the difficulty.
+            spawnRate=60;
+
+            // Changing the size of the car based on the difficulty.
+            carScale=1;
+        }
+
         // Adding 1 more for the time interval;
         timeInterval++;
     
@@ -111,76 +134,62 @@ let game = () => {
                 case 1:
                     notUserCar.style.background="url(sources/car1.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=8;
                     break;
                 case 2:
                     notUserCar.style.background="url(sources/car2.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=8;
                     break;
                 case 3:
                     notUserCar.style.background="url(sources/car3.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=8;
                     break;
                 case 4:
                     notUserCar.style.background="url(sources/car4.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=8;
                     break;
                 case 5:
                     notUserCar.style.background="url(sources/car5.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=7;
                     break;
                 case 6:
                     notUserCar.style.background="url(sources/car6.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=10;
                     break;
                 case 7:
                     notUserCar.style.background="url(sources/car7.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=10;
                     break;
                 case 8:
                     notUserCar.style.background="url(sources/car8.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=8;
                     break;
                 case 9:
                     notUserCar.style.background="url(sources/car9.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=7;
                     break;
                 case 10:
                     notUserCar.style.background="url(sources/car10.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=17;
                     break;
                 case 11:
                     notUserCar.style.background="url(sources/car11.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=8;
                     break;
                 case 12:
                     notUserCar.style.background="url(sources/car12.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCar.style.height="250px"
                     notUserCar.style.width="85px"
-                    notUserCarStep=5;
                     break;
                 case 13:
                     notUserCar.style.background="url(sources/car13.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
                     notUserCar.style.height="200px"
                     notUserCar.style.width="100px"
-                    notUserCarStep=5;
                     break;
                 case 14:
                     notUserCar.style.background="url(sources/car14.png) no-repeat center";
                     notUserCar.style.backgroundSize="contain";
-                    notUserCarStep=8;
                     break;
             }
             
@@ -188,8 +197,11 @@ let game = () => {
             road.appendChild(notUserCar);
     
             // Positioning the vehicle on some random side of the road.
-            notUserCar.style.left=(Math.floor(Math.random()*(744.5-491.5+1)) + 491.5)+"px";
-            notUserCar.style.top="-150px";
+            notUserCar.style.left=(Math.floor(Math.random()*((pointCollector.getBoundingClientRect().right - 108)-(pointCollector.getBoundingClientRect().left + 35)+1))+(pointCollector.getBoundingClientRect().left + 35))+"px";
+            notUserCar.style.top="-"+ parseFloat(window.getComputedStyle(userCar).height) +"px";
+
+            // Changing the size of the user's car based on the difficulty.
+            notUserCar.style.scale=carScale;
         }
     
         // Selecting all cars that the user does not drive.
@@ -232,7 +244,7 @@ let game = () => {
 
                     // Playing The Game Over Sound Effect.
                     gameOver.play();
-                    gameTheme.playbackRate=1
+                    gameTheme.playbackRate=1;
     
                     // Displaying the game over message.
                     messaggeTitle.innerHTML="¡Has Perdido!";
@@ -240,8 +252,8 @@ let game = () => {
                     overlay.style.display="flex"
 
                     // Positioning the car again.
-                    userCar.style.left="calc(50% - 40px)";
-                    userCar.style.top="calc(100% - 160px)";
+                    userCar.style.left="calc(50% - " + parseFloat(window.getComputedStyle(userCar).width)/2 + "px)";
+                    userCar.style.top="calc(100% - " + parseFloat(window.getComputedStyle(userCar).height+10) + "px)";
                     
                     // Event for quit the game over screen.
                     overlay.addEventListener("keydown", (e) =>{
@@ -274,7 +286,7 @@ let game = () => {
                 // Adding more spawn rate.
                 if (parseInt(score.textContent)%5==0){
                     if (spawnRate>40){
-                        spawnRate-=10
+                        spawnRate-=5
                     } 
                 }
             }
@@ -307,9 +319,9 @@ let pause = () => {
 
 // Event for player car movement.
 road.addEventListener("keydown", (e) => {
-    if ((e.code == "ArrowLeft" || e.code == "KeyA") && userCar.getBoundingClientRect().x>=491.5){ userCar.style.left = userCar.getBoundingClientRect().x - 6 + "px"; }
-    if ((e.code == "ArrowRight" || e.code == "KeyD") && userCar.getBoundingClientRect().x<=744){ userCar.style.left = userCar.getBoundingClientRect().x + 6 + "px"; }
-    if ((e.code == "ArrowDown" || e.code == "KeyS") && userCar.getBoundingClientRect().y<=494){ userCar.style.top = userCar.getBoundingClientRect().y + 6 + "px"; }
+    if ((e.code == "ArrowLeft" || e.code == "KeyA") && userCar.getBoundingClientRect().x>=(pointCollector.getBoundingClientRect().left + 35)){ userCar.style.left = userCar.getBoundingClientRect().x - 6 + "px"; }
+    if ((e.code == "ArrowRight" || e.code == "KeyD") && userCar.getBoundingClientRect().x<=(pointCollector.getBoundingClientRect().right - parseFloat(window.getComputedStyle(userCar).width)) - 30){ userCar.style.left = userCar.getBoundingClientRect().x + 6 + "px"; }
+    if ((e.code == "ArrowDown" || e.code == "KeyS") && userCar.getBoundingClientRect().y<=(pointCollector.getBoundingClientRect().bottom - parseFloat(window.getComputedStyle(userCar).height)) - 20){ userCar.style.top = userCar.getBoundingClientRect().y + 6 + "px"; }
     if ((e.code == "ArrowUp" || e.code == "KeyW") && userCar.getBoundingClientRect().y>=50){ userCar.style.top = userCar.getBoundingClientRect().y - 6 + "px"; }
 
     if ((e.code == "KeyF") && parseInt(fuel.textContent) > 0){ 
@@ -353,6 +365,7 @@ setTimeout(() => {
         gameStartSoundEffect.pause();
         gameStartSoundEffect.currentTime=0;
         gameTheme.pause();
+        gameTheme.playbackRate=1;
         gameTheme.currentTime=0;
 
         // Hiding the user's car.
@@ -361,6 +374,12 @@ setTimeout(() => {
         // Deleting the other cars.
         const notUserCars=document.querySelectorAll(".notUserCar");
         notUserCars.forEach(notUserCar => {notUserCar.remove()})
+
+        // Reseting the Crazy Points.
+        score.textContent="0 pts";
+
+        // Reseting the fuel
+        fuel.textContent=0 + " %";
     })
 },4500)
 
