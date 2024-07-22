@@ -266,6 +266,10 @@ body {
     .dificil:hover{
         background-color: #b8171f;
     }
+
+    .dificultadSeleccionada{
+        display: none;
+    }
 }
  
 /*caja de elegir vehiculo*/
