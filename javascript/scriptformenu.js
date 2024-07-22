@@ -115,7 +115,7 @@ iniciar.addEventListener("click", () => {
   
     setTimeout(() => {
       gameTheme.play();
-    }, 4500)  
+    }, 4500)
 })
 
 
@@ -134,6 +134,9 @@ facil.addEventListener('click', () => {
 
   road.style.background="url(../sources/NIVELF-MASTER.png) center";
   road.style.backgroundSize="contain";
+
+  const dificultadSeleccionada=document.querySelector(".dificultadSeleccionada");
+  dificultadSeleccionada.textContent="F";
 })
 
 medio.addEventListener('click', () => {
@@ -143,8 +146,11 @@ medio.addEventListener('click', () => {
   autos.style.display="flex";
   soundSettingsButton.style.display="flex";
 
-  road.style.background="url(../sources/NIVELM-MASTER.png) center";
+  road.style.background="url(sources/NIVELM-MASTER.png) center";
   road.style.backgroundSize="contain";
+
+  const dificultadSeleccionada=document.querySelector(".dificultadSeleccionada");
+  dificultadSeleccionada.textContent="M";
 })
 
 dificil.addEventListener('click', () =>{
@@ -156,6 +162,9 @@ dificil.addEventListener('click', () =>{
 
   road.style.background="url(../sources/NIVELD-MASTER.png) center";
   road.style.backgroundSize="contain";
+
+  const dificultadSeleccionada=document.querySelector(".dificultadSeleccionada");
+  dificultadSeleccionada.textContent="D";
 })
 
 soundSettingsButton.addEventListener('click', () => {

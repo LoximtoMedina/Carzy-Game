@@ -185,6 +185,8 @@ nav{
     position: absolute;
     right: calc(50% - 15% + 5px);
     bottom: 0px;
+
+    border: 1px solid red;
 }
 
 /* otherCars */

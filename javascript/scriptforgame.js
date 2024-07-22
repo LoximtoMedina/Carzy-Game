@@ -223,6 +223,9 @@ let game = () => {
                     // Reseting the Crazy Points.
                     score.textContent="0 pts";
 
+                    // Reseting the fuel
+                    fuel.textContent=0 + " %";
+
                     // Stoping the loop game audio.
                     gameTheme.loop=false;
                     gameTheme.pause();
@@ -340,17 +343,26 @@ pauseButton.addEventListener("click", () => {
 })
 
 // Function for show the menu.
-menuButton.addEventListener("click", () => {
-    menu.style.display="block";
+setTimeout(() => {
+    menuButton.addEventListener("click", () => {
+        // Showing the menu.
+        menu.style.display="block";
 
-    gameTheme.pause();
-    gameTheme.currentTime=0;
+        // Pausing the theme and resetting to the 0 second.
+        const gameStartSoundEffect=document.querySelector("#gameStart");
+        gameStartSoundEffect.pause();
+        gameStartSoundEffect.currentTime=0;
+        gameTheme.pause();
+        gameTheme.currentTime=0;
 
-    userCar.style.display="none";
-    
-    const notUserCars=document.querySelectorAll(".notUserCar");
-    notUserCars.forEach(notUserCar => {notUserCar.remove()})
-})
+        // Hiding the user's car.
+        userCar.style.display="none";
+
+        // Deleting the other cars.
+        const notUserCars=document.querySelectorAll(".notUserCar");
+        notUserCars.forEach(notUserCar => {notUserCar.remove()})
+    })
+},4500)
 
 // Evaluating if the game is in pause or not
 pause();
