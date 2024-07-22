@@ -14,27 +14,12 @@ body{
     width: 100%;
 
     /* Background. */
-    background: green;
+    background: url(../sources/NIVELF-MASTER.png) center;
+    background-size: contain;
 
     /* Positioning. */
     position: relative;
     overflow: hidden;
-}
-
-/* Background for the body  */
-#F{
-    background: url(../sources/NIVELF-MASTER.png) center;
-    background-size: contain;
-}
-
-#M{
-    background: url(../sources/NIVELM-MASTER.png) center;
-    background-size: contain;
-}
-
-#D{
-    background: url(../sources/NIVELD-MASTER.png) center;
-    background-size: contain;
 }
 
 /* Score Table. */
