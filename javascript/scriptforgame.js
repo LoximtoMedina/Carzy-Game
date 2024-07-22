@@ -385,8 +385,3 @@ setTimeout(() => {
 
 // Evaluating if the game is in pause or not
 pause();
-
-// The volume of the menu theme it's the same for the game theme
-volumeControl.addEventListener('input', () => {
-    gameTheme.volume = volumeControl.value;
-});

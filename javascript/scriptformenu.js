@@ -7,6 +7,7 @@ const soundOffButton = document.getElementById('sound-off');
 
 const volumeControl = document.getElementById('volume-control');
 const menuTheme = document.querySelector('#menuTheme');
+menuTheme.playbackRate=1.08;
 
 //botones de menu
 const autos=document.querySelector('.autos');
@@ -101,15 +102,29 @@ iniciar.addEventListener("click", () => {
     const userCar=document.querySelector(".userCar");
     userCar.style.display="block";
 
+    // Posiciona el carro del usuario.
+    userCar.style.left="calc(50% - " + parseFloat(window.getComputedStyle(userCar).width)/2 + "px)";
+    userCar.style.top="calc(100% - " + parseFloat(window.getComputedStyle(userCar).height+10) + "px)";
+
     // Crea en enlace entre el archivo de JavaScript que contiene el código del juego con el HTML de la página.
     const game=document.querySelector("#game");
     game.setAttribute("type", "module");
     game.setAttribute("src", "javascript/scriptforgame.js");
 
-    // Reproduce el audio para empezar el juego, el audio del juego y el del menú.
+    // Constantes de audio.
     const gameTheme=document.querySelector("#gameTheme");
+    const gameOverSound=document.querySelector("#gameOver");
     const gameStartSound=document.querySelector("#gameStart");
+
+    // Pone el volumen que esté en el control del volumen.
+    gameOverSound.volume=volumeControl.value;
+    gameStartSound.volume=volumeControl.value;
+    gameTheme.volume=volumeControl.value;
+
+    // Pone la pista del juego a velocidad normal.
     gameStartSound.currentTime=1;
+
+    // Para el audio del menú y reproduce el audio para empezar el juego y el audio del juego.
     menuTheme.pause();
     gameStartSound.play()
   
@@ -193,7 +208,6 @@ soundSettingsButton.addEventListener('click', () => {
 
 //para activar la musica
 soundOnButton.addEventListener('click', () => {
-  menuTheme.playbackRate=1.1;
   menuTheme.play();
 });
 //para pausar la musica
@@ -204,3 +218,5 @@ soundOffButton.addEventListener('click', () => {
 volumeControl.addEventListener('input', () => {
   menuTheme.volume = volumeControl.value;
 });
+
+menuTheme.play();
