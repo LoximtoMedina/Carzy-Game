@@ -26,14 +26,14 @@ const road=document.querySelector("body");
 
 /*Para mover las opciones de los carros*/
 const cars = [
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car1.png?raw=true) no-repeat center",
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car2.png?raw=true) no-repeat center",
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car3.png?raw=true) no-repeat center",
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car4.png?raw=true) no-repeat center",
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car6.png?raw=true) no-repeat center",
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car7.png?raw=true) no-repeat center",
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car8.png?raw=true) no-repeat center",
-  "url(https://github.com/LoximtoMedina/Carzy-Game/blob/main/sources/car9.png?raw=true) no-repeat center"
+  "url(sources/car1.png) no-repeat center",
+  "url(sources/car2.png) no-repeat center",
+  "url(sources/car3.png) no-repeat center",
+  "url(sources/car4.png) no-repeat center",
+  "url(sources/car6.png) no-repeat center",
+  "url(sources/car7.png) no-repeat center",
+  "url(sources/car8.png) no-repeat center",
+  "url(sources/car9.png) no-repeat center"
 ];
 
 let car = 0;
