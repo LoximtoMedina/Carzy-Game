@@ -170,9 +170,7 @@ nav{
     /* Positioning. */
     display: none;
     position: absolute;
-    left: calc(50% - 40px);
     z-index: 1000;
-    bottom: 10px;
 }
 
 /* Point Collector. */

@@ -102,9 +102,25 @@ iniciar.addEventListener("click", () => {
     const userCar=document.querySelector(".userCar");
     userCar.style.display="block";
 
+    // Evalúa la dificultad seleccionada por el usuario.
+    let difficultySelected=document.querySelector(".dificultadSeleccionada");
+    if (difficultySelected.textContent=="F"){
+        // Cambiando el tamaño del carro según la dificultad.
+        userCar.style.height="90px";
+        userCar.style.width="48px";
+      }else if (difficultySelected.textContent=="M"){
+        // Cambiando el tamaño del carro según la dificultad.
+        userCar.style.height="105px";
+        userCar.style.width="56px";
+      }else if (difficultySelected.textContent=="D"){
+        // Cambiando el tamaño del carro según la dificultad.
+        userCar.style.height="150px";
+        userCar.style.width="80px";
+    }
+    
     // Posiciona el carro del usuario.
-    userCar.style.left="calc(50% - " + parseFloat(window.getComputedStyle(userCar).width)/2 + "px)";
-    userCar.style.top="calc(100% - " + parseFloat(window.getComputedStyle(userCar).height+10) + "px)";
+    userCar.style.left="calc(50% - " + (parseFloat(window.getComputedStyle(userCar).width) / 2) + "px)";
+    userCar.style.top="calc(100% - " + (parseFloat(window.getComputedStyle(userCar).height) + 30) + "px)";
 
     // Crea en enlace entre el archivo de JavaScript que contiene el código del juego con el HTML de la página.
     const game=document.querySelector("#game");
@@ -131,22 +147,6 @@ iniciar.addEventListener("click", () => {
     setTimeout(() => {
       gameTheme.play();
     }, 4500)
-
-    // Evalúa la dificultad seleccionada por el usuario.
-    let difficultySelected=document.querySelector(".dificultadSeleccionada");
-    if (difficultySelected.textContent=="F"){
-        // Cambiando el tamaño del carro según la dificultad.
-        userCar.style.height="90px";
-        userCar.style.width="48px";
-      }else if (difficultySelected.textContent=="M"){
-        // Cambiando el tamaño del carro según la dificultad.
-        userCar.style.height="105px";
-        userCar.style.width="56px";
-      }else if (difficultySelected.textContent=="D"){
-        // Cambiando el tamaño del carro según la dificultad.
-        userCar.style.height="150px";
-        userCar.style.width="80px";
-    }
 })
 
 

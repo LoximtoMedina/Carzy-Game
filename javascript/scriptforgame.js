@@ -252,8 +252,8 @@ let game = () => {
                     overlay.style.display="flex"
 
                     // Positioning the car again.
-                    userCar.style.left="calc(50% - " + parseFloat(window.getComputedStyle(userCar).width)/2 + "px)";
-                    userCar.style.top="calc(100% - " + parseFloat(window.getComputedStyle(userCar).height+10) + "px)";
+                    userCar.style.left="calc(50% - " + (parseFloat(window.getComputedStyle(userCar).width) / 2) + "px)";
+                    userCar.style.top="calc(100% - " + (parseFloat(window.getComputedStyle(userCar).height)+ 30) + "px)";
                     
                     // Event for quit the game over screen.
                     overlay.addEventListener("keydown", (e) =>{
